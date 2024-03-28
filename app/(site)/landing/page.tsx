@@ -1,9 +1,10 @@
 "use client";
 import { FC } from "react";
 import Landing from "@/app/components/landing/Landing";
+import Head from "next/head";
 
-const LandingPage: FC = () => {
+const JopLiveLanding: FC = () => {
   return <Landing />;
 };
 
-export default LandingPage;
+export default JopLiveLanding;

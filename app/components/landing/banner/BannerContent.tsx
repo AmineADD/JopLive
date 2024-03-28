@@ -49,9 +49,10 @@ const BannerContent = () => {
         >
           Your Gateway &{" "}
           <Typography component={"span"} variant="inherit" color={"primary"}>
-            Streaming
+            JopLive
+            <br />
           </Typography>{" "}
-          Unparalleled Live Experience
+          Share unparalleled Live Experience
         </Typography>
       </motion.div>
       <Box pt={4} pb={3}>
@@ -83,15 +84,11 @@ const BannerContent = () => {
         }}
       >
         <Stack direction={{ xs: "column", sm: "row" }} spacing={2} mt={3}>
-          <StyledButton
-            variant="contained"
-            color="primary"
-            href="/auth/auth1/login"
-          >
+          <StyledButton variant="contained" color="primary" href="/login">
             Login
           </StyledButton>
 
-          <StyledButton variant="outlined" href="#demos">
+          <StyledButton variant="outlined" href="/live">
             Live
           </StyledButton>
         </Stack>

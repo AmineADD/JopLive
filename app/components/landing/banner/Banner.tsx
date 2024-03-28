@@ -8,9 +8,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { styled } from "@mui/material/styles";
 import BannerContent from "./BannerContent";
 import Image from "next/image";
-import bannerbgImg1 from "/public/images/landingpage/bannerimg1.svg";
-import bannerbgImg2 from "/public/images/landingpage/bannerimg2.svg";
-
+import bannerbgImg1 from "/public/images/landing/background.png";
 const Banner = () => {
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up("lg"));
 
@@ -66,14 +64,6 @@ const Banner = () => {
                     <SliderBox>
                       <Image src={bannerbgImg1} alt="banner" priority />
                     </SliderBox>
-                  </Box>
-                  <Box>
-                    <SliderBox2>
-                      <Image src={bannerbgImg2} alt="banner" priority />
-                    </SliderBox2>
-                    <SliderBox2>
-                      <Image src={bannerbgImg2} alt="banner" priority />
-                    </SliderBox2>
                   </Box>
                 </Stack>
               </Box>

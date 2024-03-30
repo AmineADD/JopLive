@@ -85,8 +85,13 @@ const Title: FC = () => {
         }}
       >
         <Container maxWidth="lg">
-          <Grid container justifyContent="space-between" spacing={3}>
-            <Grid item xs={6} sm={6} lg={5}>
+          <Grid
+            container
+            justifyContent="space-between"
+            alignItems="center"
+            spacing={3}
+          >
+            <Grid item xs={12} sm={6} lg={5}>
               <Typography
                 variant="h3"
                 color="background.paper"
@@ -102,17 +107,8 @@ const Title: FC = () => {
                 Don&apos;t miss a beat! 💖 #Paris2024 🇫🇷
               </Typography>
             </Grid>
-            <Grid item xs={6} lg={5}>
-              <Box
-                sx={{
-                  textAlign: {
-                    xs: "center",
-                    lg: "right",
-                  },
-                }}
-              >
-                <Image src={c2aImg} alt="img" width="330" />
-              </Box>
+            <Grid item xs={12} sm={6} md={5} lg={5}>
+              <Image src={c2aImg} alt="img" width="330" />
             </Grid>
           </Grid>
         </Container>

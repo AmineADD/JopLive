@@ -1,7 +1,7 @@
 import { Box, Typography, Divider, Avatar } from "@mui/material";
 import CustomSocialButton from "@/app/shared/CustomSocialButton";
 import { Stack } from "@mui/system";
-import { useAppContext } from "@/app/Contextv2/app.context";
+import { useAppContext } from "@/app/context/app.context";
 
 const AuthLogin = () => {
   const { authentication } = useAppContext();

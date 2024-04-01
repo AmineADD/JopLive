@@ -1,9 +1,11 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, Dispatch, SetStateAction } from "react";
 
 export type AppProviderValue = {
+  isLoading: boolean;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
   authentication: {
     isAuthenticated: boolean;
-    login: () => void;
+    login: (_: string) => void;
     logout: () => void;
   };
 };

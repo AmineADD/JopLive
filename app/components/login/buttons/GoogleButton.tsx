@@ -1,10 +1,17 @@
 import { FC } from "react";
 import CustomSocialButton from "@/app/shared/CustomSocialButton";
 import { Box, Avatar } from "@mui/material";
+import { useAppContext } from "@/app/context/app/app.context";
 
 const GoogleButton = () => {
+  const { authentication } = useAppContext();
+
+  const handleSubmitLogin = () => {
+    authentication?.login("google");
+  };
+
   return (
-    <CustomSocialButton>
+    <CustomSocialButton onClick={handleSubmitLogin}>
       <Avatar
         src={"/images/svgs/google-icon.svg"}
         alt={"icon1"}

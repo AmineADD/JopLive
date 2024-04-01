@@ -8,19 +8,23 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(auto()) @map("_id") @db.ObjectId
-  email     String    @unique
-  name      String?
+   id              String @id @default(auto()) @map("_id") @db.ObjectId
+  name            String?
+  email           String?   @unique
+  emailVerified   DateTime?
+  image           String?
+  hashedPassword  String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
   markers   Marker[]
-  account   Account?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  accounts Account[] 
 
   @@map("users")
 }
 
 model Marker {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String?
   latitude    Float
@@ -29,10 +33,10 @@ model Marker {
   streamUrl   String?    
   startTime   DateTime?  
   endTime     DateTime? 
-  userId      String?   @db.ObjectId 
-  user        User?     @relation(fields: [userId], references: [id])
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  userId      String?    @db.ObjectId
+  user        User?      @relation(fields: [userId], references: [id])
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 
   @@map("markers")
 }
@@ -44,16 +48,20 @@ enum MarkerType {
 }
 
 model Account {
-  id           String    @id @default(auto()) @map("_id") @db.ObjectId
-  userId       String    @unique @db.ObjectId  
-  accessToken  String    @unique
-  refreshToken String    @unique
-  tokenType    String    
-  expiresIn    DateTime   
-  sessionState String?   
-  user         User      @relation(fields: [userId], references: [id])
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+ id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId             String   @db.ObjectId
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.String
+  access_token       String?  @db.String
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.String
+  session_state      String?
 
-  @@map("accounts")
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
 }

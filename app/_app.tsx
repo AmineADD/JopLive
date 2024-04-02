@@ -6,6 +6,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { ThemeSettings } from "./utils/theme/Theme";
 import AppProvider from "./context/app/app.provider";
 import ToasterContext from "./context/toast/Toaster.context";
+import AuthProvider from "./context/auth/AuthContext";
 
 const MyApp = ({ children }: { children: React.ReactNode }) => {
   const theme = ThemeSettings();
@@ -16,8 +17,10 @@ const MyApp = ({ children }: { children: React.ReactNode }) => {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <AppProvider>
-            <ToasterContext />
-            {children}
+            <AuthProvider>
+              <ToasterContext />
+              {children}
+            </AuthProvider>
           </AppProvider>
         </ThemeProvider>
       </AppRouterCacheProvider>

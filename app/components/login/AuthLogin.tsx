@@ -1,15 +1,18 @@
-import { Box, Typography, Divider, Avatar } from "@mui/material";
+import { Box, Typography, Divider } from "@mui/material";
 import { Stack } from "@mui/system";
-import { useAppContext } from "@/app/context/app/app.context";
 import GuestButton from "./buttons/GuestButton";
 import GoogleButton from "./buttons/GoogleButton";
+import { useSession } from "next-auth/react";
+import { ReactElement, useCallback, useEffect, useState } from "react";
+import UserProfile from "./profile/UserProfile";
 
 const AuthLogin = () => {
-  const { authentication: _ } = useAppContext();
+  const session = useSession();
+  const [viewToShow, setViewToShow] = useState<ReactElement>();
 
-  return (
-    <>
-      <Box mt={3}>
+  const renderUnAuthenticatedView = useCallback(
+    () => (
+      <>
         <Divider>
           <Typography
             component="span"
@@ -26,7 +29,46 @@ const AuthLogin = () => {
           <GoogleButton />
           <GuestButton />
         </Stack>
-      </Box>
+      </>
+    ),
+    []
+  );
+
+  const renderAuthenticatedView = useCallback(
+    () => (
+      <>
+        <Divider>
+          <Typography
+            component="span"
+            color="textSecondary"
+            variant="h6"
+            fontWeight="400"
+            position="relative"
+            px={2}
+          >
+            Welcome into The experience
+          </Typography>
+        </Divider>
+        <Stack direction="row" justifyContent="center" spacing={2} mt={3}>
+          <UserProfile {...session.data?.user} />
+        </Stack>
+      </>
+    ),
+    [session]
+  );
+
+  useEffect(() => {
+    if (session?.status === "authenticated") {
+      setViewToShow(renderAuthenticatedView());
+      console.log(session);
+    } else {
+      setViewToShow(renderUnAuthenticatedView());
+    }
+  }, [renderAuthenticatedView, renderUnAuthenticatedView, session]);
+
+  return (
+    <>
+      <Box mt={3}>{viewToShow}</Box>
     </>
   );
 };

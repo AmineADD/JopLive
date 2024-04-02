@@ -3,14 +3,9 @@ import { createContext, useContext, Dispatch, SetStateAction } from "react";
 export type AppProviderValue = {
   isLoading: boolean;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
-  authentication: {
-    isAuthenticated: boolean;
-    login: (_: string) => void;
-    logout: () => void;
-  };
 };
 
-const AppContext = createContext<Partial<AppProviderValue>>({});
+const AppContext = createContext<AppProviderValue>({} as AppProviderValue);
 
 export const AppContextProvider = AppContext.Provider;
 

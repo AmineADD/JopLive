@@ -2,16 +2,30 @@ import { FC } from "react";
 import CustomSocialButton from "@/app/shared/CustomSocialButton";
 import { Box, Avatar } from "@mui/material";
 import { useAppContext } from "@/app/context/app/app.context";
+import { signIn } from "next-auth/react";
+import toast from "react-hot-toast";
 
 const GoogleButton = () => {
-  const { authentication } = useAppContext();
+  const { setIsLoading } = useAppContext();
 
-  const handleSubmitLogin = () => {
-    authentication?.login("google");
+  const handleGoogleLogin = () => {
+    setIsLoading(true);
+
+    signIn("google", { redirect: false }).then((response) => {
+      if (response?.error) {
+        toast.error("Sign in Error please Retry");
+        setIsLoading(false);
+        return;
+      }
+
+      if (response?.ok && !response?.error) {
+        setIsLoading(false);
+      }
+    });
   };
 
   return (
-    <CustomSocialButton onClick={handleSubmitLogin}>
+    <CustomSocialButton onClick={handleGoogleLogin}>
       <Avatar
         src={"/images/svgs/google-icon.svg"}
         alt={"icon1"}

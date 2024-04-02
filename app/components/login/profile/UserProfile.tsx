@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Grid, Box, Typography } from "@mui/material";
-import LogoutButton from "./profile-logout/Logoutbutton";
+import LogoutButton from "./profile-logout/LogoutButton";
 import ProfileImage from "./profile-image/ProfileImage";
 
 type UserProfileProps = {

@@ -9,7 +9,7 @@
 
 - [ ] Ajout d'une description claire et concise des modifications apportées par cette PR.
 
-### Impact sur les Données/Événements
+### Impact sur les Données/Événements cocuou
 
 - [ ] Cette PR n'impacte pas les données ou événements suivis.
 - [ ] Cette PR impacte les données ou événements suivis
